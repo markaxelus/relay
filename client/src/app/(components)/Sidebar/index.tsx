@@ -1,7 +1,10 @@
 "use client"
 import React, { useState } from 'react'
 import Image from 'next/image';
-import { LockIcon } from 'lucide-react';
+import { LockIcon, LucideIcon } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '@/app/redux';
+import Link from 'next/link';
 
 const Sidebar = () => {
     const [showProjects, setShowProjects] = useState(true);
@@ -43,6 +46,39 @@ const Sidebar = () => {
                 {/* Navbar Links */}
             </div>
         </div>
+    )
+}
+
+interface SidebarLinkProps {
+    href: string,
+    icon: LucideIcon,
+    label: string,
+    isCollapsed: boolean,
+}
+
+const SidebarLink = ({
+    href,
+    icon: Icon,
+    label,
+    isCollapsed,
+} : SidebarLinkProps) => {
+    const pathname = usePathname();
+    const isActive = pathname === href || (pathname==='/' && href === '/dashboard');
+    const screenWidth = window.innerWidth;
+
+    const dispatch = useAppDispatch();
+    const isSidebarCollapsed = useAppSelector(
+            (state) => state.global.isSidebarCollapsed
+    );
+
+    return (
+        <Link href={href} className=''>
+            <div className="">
+                {isActive && 
+                    <div></div>
+                }
+            </div>
+        </Link>
     )
 }
 
