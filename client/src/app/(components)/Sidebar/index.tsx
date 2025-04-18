@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import Image from 'next/image';
-import { Home, LockIcon, LucideIcon, X } from 'lucide-react';
+import { AlertCircle, AlertOctagon, AlertTriangle, Calendar, ChevronDown, ChevronUp, Home, Layers2, Layers3, Layers3Icon, LockIcon, LucideIcon, Search, Settings, ShieldAlert, User, Users, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/app/redux';
 import Link from 'next/link';
@@ -59,12 +59,44 @@ const Sidebar = () => {
 
                 {/* Navbar Links */}
                 <nav className="z-10 w-full">
-                    <SidebarLink 
-                        href='/'
-                        icon={Home}
-                        label="Home"
-                    />
+                    <SidebarLink href='/' icon={Home} label="Home"/>
+                    <SidebarLink href='/search' icon={Search} label="Search"/>
+                    <SidebarLink href='/timeline' icon={Calendar} label="Timeline"/>
+                    <SidebarLink href='/user' icon={User} label="User"/>
+                    <SidebarLink href='/teams' icon={Users} label="Teams"/>
+                    <SidebarLink href='/settings' icon={Settings} label="Settings"/>
                 </nav>
+                
+                {/* Projects */}
+                <button className="cursor-pointer flex w-full items-center justify-between px-8 py-3 text-gray-500 "
+                        onClick={() => setShowProjects((prev) => (!prev))}>
+                    <span className="">Projects</span>
+                    {showProjects ? (
+                        <ChevronUp className='h-5 w-5' />
+                    ) : (
+                        <ChevronDown className='h-5 w-5' />
+                    )}
+                </button>
+
+                {/* Priority */}
+                <button className="cursor-pointer flex w-full items-center justify-between px-8 py-3 text-gray-500 "
+                        onClick={() => setShowPriority((prev) => (!prev))}>
+                    <span className="">Priority</span>
+                    {showPriority ? (
+                        <ChevronUp className='h-5 w-5' />
+                    ) : (
+                        <ChevronDown className='h-5 w-5' />
+                    )}
+                </button>
+                {showPriority && (
+                    <>
+                        <SidebarLink href='/priority/urgent' icon={AlertCircle} label="Urgent"/>
+                        <SidebarLink href='/priority/high' icon={ShieldAlert} label="High"/>
+                        <SidebarLink href='/priority/medium' icon={AlertTriangle} label="Medium"/>
+                        <SidebarLink href='/priority/low' icon={AlertOctagon} label="Low"/>
+                        <SidebarLink href='/priority/backlog' icon={Layers3Icon} label="Backlog"/>
+                    </>
+                )}
             </div>
         </div>
     )
