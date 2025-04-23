@@ -23,6 +23,8 @@ import {
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/app/redux";
+import { setIsSidebarCollapsed } from "@/state";
 
 interface SidebarLinkProps {
   href: string;
@@ -30,12 +32,20 @@ interface SidebarLinkProps {
   label: string;
 }
 
-const sidebarClassNames = `fixed flex h-full justify-between shadow-2xl
+const Sidebar = () => {
+  const dispatch = useAppDispatch();
+  const isSidebarCollapsed = useAppSelector(
+    (state) => state.global.isSidebarCollapsed,
+  )
+
+  const sidebarClassNames = `fixed flex h-full justify-between shadow-2xl
                             transition-all duration-300 h-full z-40
                             overflow-y-auto bg-white
-                                `;
+                            ${isSidebarCollapsed 
+                              ? "w-0 hidden"
+                              : "w-60"
+                            }  `;
 
-const Sidebar = () => {
   return (
     <div className={`${sidebarClassNames}`}>
       <div className="flex h-[100%] w-full flex-col justify-start dark:bg-black">
@@ -44,9 +54,12 @@ const Sidebar = () => {
           <div className="text-xl font-bold text-gray-800 dark:text-white">
             RELAY
           </div>
-          <button className="cursor-pointer py-3">
-            <X className="h-6 w-6 text-gray-800 hover:text-gray-500 dark:text-white" />
-          </button>
+          {isSidebarCollapsed ? null : (
+            <button className="cursor-pointer py-3"
+                    onClick={() => dispatch(setIsSidebarCollapsed(!isSidebarCollapsed))}>
+              <X className="h-6 w-6 text-gray-800 hover:text-gray-500 dark:text-white" />
+            </button>
+          )}
         </div>
 
         {/* Team Section */}
