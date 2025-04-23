@@ -1,7 +1,8 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
-import { Menu, Moon, Search, Sun } from "lucide-react";
+import { Menu, Moon, Search, Settings, Sun } from "lucide-react";
 import { setIsDarkMode, setIsSidebarCollapsed } from "@/state";
+import Link from "next/link";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -19,26 +20,30 @@ const Navbar = () => {
             className="cursor-pointer"
             onClick={() => dispatch(setIsSidebarCollapsed(!isSidebarCollapsed))}
           >
-            <Menu className="h-8 w-8" />
+            <Menu className="h-8 w-8 dark:text-white" />
           </button>
         )}
       </div>
 
-      <div className="flex gap-8">
+      <div className="flex gap-8 ">
         {/* Search Bar */}
-        <div className="relative flex h-min w-[350px]">
-          <Search className="absolute transform top-1/2 -translate-y-1/2 left-[4px] mr-2 h-5 w-5" />
+        <div className="relative flex h-min w-[350px] pr-2">
+          <Search className="absolute transform top-1/2 -translate-y-1/2 left-[4px] h-5 w-5 dark:text-white" />
           <input
-            className="w-full p-2 pl-8 rounded border-none focus:border-transparent focus:outline-none bg-gray-200 placeholder-gray-500"
+            className="w-full p-2 pl-8 rounded border-none focus:border-transparent focus:outline-none bg-gray-200 placeholder-gray-500 dark:bg-gray-700 dark:text-white dark:placeholder-white"
             type="search"
             placeholder="Search..."
           />
         </div>
 
         {/* Icons */}
-        <div className="flex items-center ">
+        <div className="flex items-center gap-2">
           <button
-            className={`cursor-pointer `}
+            className={`cursor-pointer h-min w-min p-2 rounded
+                        ${isDarkMode 
+                          ? "dark:hover:bg-gray-700"
+                          : "hover:bg-gray-100"
+                        }`}
             onClick={() => dispatch(setIsDarkMode(!isDarkMode))}
           >
             {isDarkMode ? (
@@ -47,6 +52,16 @@ const Navbar = () => {
               <Moon className="h-6 w-6 dark:text-white" />
             )}
           </button>
+          <Link 
+            href="/settings"
+            className={`h-min w-min rounded p-2 
+                        ${isDarkMode 
+                          ? " dark:hover:bg-gray-700"
+                          : "hover:bg-gray-100"
+                        }`}
+          >
+            <Settings className="h-6 w-6 cursor-pointer dark:text-white" />
+          </Link>
         </div>
       </div>
     </div>
