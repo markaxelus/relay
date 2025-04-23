@@ -1,4 +1,5 @@
 "use client"
+import Sidebar from '@/components/Sidebar';
 import React, { useEffect } from 'react'
 
 type Props = {
@@ -7,9 +8,9 @@ type Props = {
 
 const DashboardWrapper = ({ children }: Props) => {
   return (
-    <div className='h-min-screen w-full'>
+    <div className='flex h-min-screen w-full'>
       {/* Sidebar */}
-      
+      <Sidebar />
       <main className={``}>
         {/* Navbar */}  
         {children}
