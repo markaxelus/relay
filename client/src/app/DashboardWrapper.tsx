@@ -11,7 +11,7 @@ const DashboardWrapper = ({ children }: Props) => {
     <div className='flex h-min-screen w-full'>
       {/* Sidebar */}
       <Sidebar />
-      <main className={``}>
+      <main className={`dark:bg-dark-bg`}>
         {/* Navbar */}  
         {children}
       </main>

@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import {
   AlertCircle,
@@ -39,7 +40,7 @@ const Sidebar = () => {
     <div className={`${sidebarClassNames}`}>
       <div className="flex h-[100%] w-full flex-col justify-start dark:bg-black">
         {/* Top Logo Section*/}
-        <div className="z-50 flex min-h-[56px] w-60 items-center justify-between bg-white px-6 pt-3 dark:bg-black">
+        <div className="z-50 flex min-h-[56px] w-60 items-center justify-between  px-6 pt-3 dark:bg-black">
           <div className="text-xl font-bold text-gray-800 dark:text-white">
             RELAY
           </div>
@@ -75,12 +76,12 @@ const Sidebar = () => {
 const SidebarLink = ({ href, icon: Icon, label }: SidebarLinkProps) => {
   const pathname = usePathname();
   const isActive = pathname === href || (pathname === "/" && href === "/");
-
+  
   return (
     <Link href={href} className="w-full ">
       <div
-        className={`relative flex items-center gap-3 px-8 py-3 transition-colors hover:bg-gray-100
-                        ${isActive ? "bg-gray-100 " : ""}`}
+        className={`relative flex items-center gap-3 px-8 py-3 transition-colors hover:bg-gray-100 dark:bg-black
+                        ${isActive ? "bg-gray-100 text-white dark:bg-gray-600 " : ""}`}
       >
         {isActive && (
           <div className="absolute bg-orange-300 top-0 left-0 h-full w-[5px]"></div>
