@@ -1,11 +1,21 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark*));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  html {
+    box-sizing: border-box;
+  }
+
   html,
   body,
-  root,
+  #root,
   .app {
     height: 100%;
     width: 100%;
