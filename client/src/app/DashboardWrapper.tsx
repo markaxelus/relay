@@ -2,6 +2,7 @@
 import Sidebar from '@/components/Sidebar';
 import React, { useEffect } from 'react'
 import StoreProvider from './redux';
+import Navbar from '@/components/Navbar';
 
 type Props = {
   children: React.ReactNode;
@@ -9,11 +10,12 @@ type Props = {
 
 const DashboardLayout = ({ children }: Props) => {
   return (
-    <div className='flex h-min-screen w-full'>
+    <div className='flex min-h-screen w-full bg-gray-50 text-gray-900'>
       {/* Sidebar */}
       <Sidebar />
-      <main className={`dark:bg-dark-bg`}>
+      <main className={`dark:bg-dark-bg w-full flex flex-col`}>
         {/* Navbar */}  
+        <Navbar />
         {children}
       </main>
 
