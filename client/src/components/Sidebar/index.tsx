@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useState } from "react";
 import {
   AlertCircle,
   AlertOctagon,
@@ -33,6 +33,7 @@ interface SidebarLinkProps {
 }
 
 const Sidebar = () => {
+  const [showProjects,setShowProjects] = useState(false);
   const dispatch = useAppDispatch();
   const isSidebarCollapsed = useAppSelector(
     (state) => state.global.isSidebarCollapsed,
@@ -75,12 +76,27 @@ const Sidebar = () => {
         </div>
 
         {/* Nav Links */}
-        <nav className="w-full">
-          <SidebarLink href="/" icon={Home} label="Dashboard" />
+        <nav className="w-full border-b-1 border-gray-200 dark:border-gray-700">
+          <SidebarLink href="/" icon={Home} label="Home" />
           <SidebarLink href="/timeline" icon={Calendar} label="Timeline" />
           <SidebarLink href="/tasks" icon={Clipboard} label="Tasks" />
-          <SidebarLink href="/settings" icon={Settings} label="Settings" />
+          <SidebarLink href="/teams" icon={Users} label="Teams" />
         </nav>
+
+        {/* Projects Section*/}
+        <button className="w-full cursor-pointer flex items-center justify-between px-8 py-3 font-medium dark:text-white"
+                onClick={() => setShowProjects((prev) => (!prev))}
+        >
+          <span className="">
+            Projects
+          </span>
+          {showProjects ? (
+            <ChevronUp className="h-5 w-5"/>
+          ) : (
+            <ChevronDown className="h-5 w-5"/>
+          )}
+        </button>
+
       </div>
     </div>
   );
