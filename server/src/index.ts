@@ -4,6 +4,7 @@ import bodyParser from "body-parser"
 import cors from "cors"
 import helmet from "helmet"
 import morgan from "morgan"
+import projectRoutes from "./routes/projectRoutes"
 
 dotenv.config();
 const port = process.env.PORT || 3000;
@@ -23,6 +24,8 @@ app.use(cors());
 app.get('/', (req, res) => {
   res.send("Home Route");
 })
+
+app.use('/projects', projectRoutes);
 
 
 app.listen(port, () => {
