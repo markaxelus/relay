@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ProjectHeader from '../ProjectHeader';
+import ProjectHeader from '@/app/projects/ProjectHeader';
 
 type Props = {
   params: { id: string }
