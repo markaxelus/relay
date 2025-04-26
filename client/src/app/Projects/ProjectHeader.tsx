@@ -1,6 +1,14 @@
 "use client";
 import Header from "@/components/Header";
-import { Grid3x3, LucideIcon } from "lucide-react";
+import {
+  Clock,
+  Filter,
+  Grid3x3,
+  List,
+  Search,
+  Share2,
+  Table,
+} from "lucide-react";
 import React, { useState } from "react";
 
 type Props = {
@@ -18,7 +26,7 @@ const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
       </div>
 
       {/* Header Buttons */}
-      <div className="dark:border-stroke-dark border-y border-gray-200 flex gap-2 pt-2 pb-[8px] md:items-center">
+      <div className="dark:border-stroke-dark border-y flex-wrap-reverse border-gray-200 flex gap-2 pt-2 pb-[8px] md:items-center">
         <div className="flex flex-1 gap-2 md:gap-4 items-center">
           <HeaderButton
             name="Board"
@@ -28,23 +36,47 @@ const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
           />
           <HeaderButton
             name="List"
-            icon={<Grid3x3 className="h-5 w-5" />}
+            icon={<List className="h-5 w-5" />}
             setActiveTab={setActiveTab}
             activeTab={activeTab}
           />
           <HeaderButton
             name="Timeline"
-            icon={<Grid3x3 className="h-5 w-5" />}
+            icon={<Clock className="h-5 w-5" />}
             setActiveTab={setActiveTab}
             activeTab={activeTab}
           />
           <HeaderButton
             name="Table"
-            icon={<Grid3x3 className="h-5 w-5" />}
+            icon={<Table className="h-5 w-5" />}
             setActiveTab={setActiveTab}
             activeTab={activeTab}
           />
         </div>
+        {/* Utilities */}
+      <div className="flex items-center gap-2">
+        {/* Filter */}
+        <button className="cursor-pointer text-gray-500 hover:text-gray-600 dark:text-neutral-500 dark:hover:text-gray-300">
+          <Filter className="h-5 w-5" />
+        </button>
+
+        {/* Share */}
+        <button className="cursor-pointer text-gray-500 hover:text-gray-600 dark:text-neutral-500 dark:hover:text-gray-300">
+          <Share2 className="h-5 w-5" />
+        </button>
+
+        {/* Search */}
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search Task"
+            className="dark:border-dark-secondary dark:bg-dark-secondary rounded-md bg-gray-200 py-1 pr-4 pl-10 focus:outline-none dark:text-white"
+          />
+          <Search className="absolute h-4 w-4 left-3 top-[6px] text-gray-500 dark:text-neutral-500" />
+        </div>
+      </div>
+
+      
       </div>
     </div>
   );
