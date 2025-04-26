@@ -25,6 +25,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed } from "@/state";
+import { useGetProjectsQuery } from "@/state/api";
 
 interface SidebarLinkProps {
   href: string;
@@ -33,11 +34,12 @@ interface SidebarLinkProps {
 }
 
 const Sidebar = () => {
-  const [showProjects,setShowProjects] = useState(false);
+  const [showProjects,setShowProjects] = useState(true);
   const dispatch = useAppDispatch();
   const isSidebarCollapsed = useAppSelector(
     (state) => state.global.isSidebarCollapsed,
   )
+  const { data: projects } = useGetProjectsQuery();
 
   const sidebarClassNames = `fixed flex h-full justify-between shadow-2xl
                             transition-all duration-300 h-full z-40
@@ -96,7 +98,17 @@ const Sidebar = () => {
             <ChevronDown className="h-5 w-5"/>
           )}
         </button>
-
+        
+        {showProjects && projects?.map((project) => (
+          
+          <SidebarLink
+            key={project.id}
+            href={`/projects/${project.id}`}
+            icon={Briefcase}
+            label={project.name}
+          />
+        ))}
+        
       </div>
     </div>
   );
