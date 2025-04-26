@@ -27,10 +27,11 @@ const Navbar = () => {
 
       <div className="flex gap-8 ">
         {/* Search Bar */}
-        <div className="relative flex h-min w-[350px] pr-2">
+        <div className="relative flex h-min md:w-[300px] lg:w-[350px] w-[200px] pr-2">
           <Search className="absolute transform top-1/2 -translate-y-1/2 left-[4px] h-5 w-5 dark:text-white" />
           <input
-            className="w-full p-2 pl-8 rounded border-none focus:border-transparent focus:outline-none bg-gray-200 placeholder-gray-500 dark:bg-gray-700 dark:text-white dark:placeholder-white"
+            className="w-full p-2 pl-8 rounded border-none focus:border-transparent focus:outline-none bg-gray-200 placeholder-gray-500 
+            dark:bg-gray-700 dark:text-white dark:placeholder-white"
             type="search"
             placeholder="Search..."
           />
