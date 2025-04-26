@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+"use client"
+import React, { useState, use } from 'react'
 import ProjectHeader from '@/app/projects/ProjectHeader';
 
 type Props = {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 const Project = ({ params }: Props) => {
-  const { id } = params;
+  const { id } = use(params);
   const [activeTab, setActiveTab] = useState("Board");
 
 
