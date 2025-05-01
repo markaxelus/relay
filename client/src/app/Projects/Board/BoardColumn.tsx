@@ -1,7 +1,7 @@
-import React from "react";
 import { Task as TaskType } from "@/state/api";
-import { useDrop, useDrag } from "react-dnd";
+import { useDrop } from "react-dnd";
 
+/* Contains logic for dropping items into the board and the board itself */
 type BoardColumnProps = {
   status: string;
   tasks: TaskType[];
