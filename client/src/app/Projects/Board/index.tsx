@@ -2,6 +2,7 @@ import { useGetTasksQuery, useUpdateTaskStatusMutation } from '@/state/api';
 import React from 'react'
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import BoardColumn from './BoardColumn';
 
 type BoardProps = {
   id: string;
@@ -23,7 +24,17 @@ const Board = ({ id, setIsModalNewTaskOpen }: BoardProps) => {
   
   return (
     <DndProvider backend={HTML5Backend}>
-      
+      <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 xl:grid-cols-4">
+        {taskStatus.map((status) => (
+          <BoardColumn
+            key={status}
+            status={status}
+            tasks={tasks || []}
+            moveTask={moveTask}
+            setIsModalNewTaskOpen={setIsModalNewTaskOpen}
+          />
+        ))}
+      </div>
     </DndProvider>
   )
 }

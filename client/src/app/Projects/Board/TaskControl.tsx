@@ -1,6 +1,8 @@
 import { Task as TaskType } from "@/state/api"
 import { useDrag } from "react-dnd"
 import { format } from "date-fns"
+import Image from "next/image";
+import { EllipsisVertical, MessageSquareMore } from "lucide-react";
 
 type TaskProps = {
   task: TaskType;
@@ -35,6 +37,13 @@ const TaskControl = ({ task }: TaskProps) => {
       {priority}
     </div>
   );
+
+  return (
+    <div>
+      a
+    </div>
+      
+  )
 }
 
 export default TaskControl

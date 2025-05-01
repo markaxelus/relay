@@ -93,8 +93,8 @@ export const api = createApi({
     }),
 
     /* Task */
-    getTasks: build.query<Task[], { projectId: Number }>({
-      query: ({ projectId }) => `tasks?project=${projectId}`,
+    getTasks: build.query<Task[], { projectId: number }>({
+      query: ({ projectId }) => `tasks?projectId=${projectId}`,
       providesTags: (result) =>
         result
           ? result.map(({ id }) => ({ type: "Tasks" as const, id }))
