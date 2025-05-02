@@ -53,27 +53,39 @@ const TaskControl = ({ task }: TaskProps) => {
       ref={(instance) => {
         drag(instance);
       }}
-      className={`
+      className={`dark:bg-dark-secondary mb-4 rounded-md bg-white shadow-md
                 ${isDragging ? "opacity-50" : "opacity-100"}`}
     >
 
       <div className=" p-4 md:p-6">
+        {/* Task Image */}
+        {task.attachments && task.attachments.length > 0 && (
+          <Image
+            src={`/${task.attachments[0].fileURL}`}
+            alt={task.attachments[0].fileName}
+            width={400}
+            height={200}
+            className="h-auto w-full rounded-t-md pb-4"
+          />
+        )}
+
+        {/* Task Info Container */}
         <div className="flex items-start justify-between">
           <div className="flex flex-1 flex-wrap items-center gap-2">
-            {task.priority && 
-              <PriorityTag priority={task.priority} />}
+            {task.priority && <PriorityTag priority={task.priority} />}
             <div className="flex gap-2">
               {taskTagsSplit.map((tag) => (
-                <div 
+                <div
                   key={tag}
-                  className="rounded-full bg-gray-300 px-2 py-1 text-xs"
+                  className="rounded-full bg-blue-100 px-2 py-1 text-xs"
                 >
+                  {" "} 
                   {tag}
                 </div>
               ))}
             </div>
           </div>
-          <button className="flex h-6 w-6 flex-shrink-0 items-center justify-center dark:text-neutral-500">
+          <button className="flex h-6 w-4 flex-shrink-0 items-center justify-center dark:text-neutral-500">
             <EllipsisVertical size={26} />
           </button>
         </div>
