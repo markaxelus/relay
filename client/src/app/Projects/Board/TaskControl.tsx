@@ -33,14 +33,53 @@ const TaskControl = ({ task }: TaskProps) => {
                         : 0
 
   const PriorityTag = ({ priority }: { priority: TaskType["priority"] }) => (
-    <div className={`rounded-full px-2 py-1 text-xs font-semibold`}>
+    <div className={`rounded-full px-2 py-1 text-xs font-semibold
+                      ${priority === "Urgent"
+                        ? "bg-red-200 text-red-700"
+                        : priority === "High"
+                          ? "bg-yellow-200 text-yellow-700"
+                          : priority === "Medium"
+                            ? "bg-green-200 text-green-700"
+                            : priority === "Low"
+                              ? "bg-blue-200 text-blue-700"
+                              : "bg-gray-200 text-gray-700"
+                      }`}>
       {priority}
     </div>
   );
 
   return (
-    <div>
-      a
+    <div
+      ref={(instance) => {
+        drag(instance);
+      }}
+      className={`
+                ${isDragging ? "opacity-50" : "opacity-100"}`}
+    >
+
+       <div className="p-4 md:p-6">
+        <div className="flex items-start justify-between">
+          <div className="flex flex-1 flex-wrap items-center gap-2">
+            {task.priority && 
+              <PriorityTag priority={task.priority} />}
+            <div className="flex gap-2">
+              {taskTagsSplit.map((tag) => (
+                <div 
+                  key={tag}
+                  className="rounded-full bg-gray-300 px-2 py-1 text-xs"
+                >
+                  {tag}
+                </div>
+              ))}
+            </div>
+          </div>
+          <button className="flex h-6 w-6 flex-shrink-0 items-center justify-center dark:text-neutral-500">
+            <EllipsisVertical size={26} />
+          </button>
+          
+        </div>
+       </div>
+   
     </div>
       
   )

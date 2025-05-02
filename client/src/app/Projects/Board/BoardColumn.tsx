@@ -26,7 +26,14 @@ const BoardColumn = ({
     collect: (m) => ({ isOver: !!m.isOver() }),
   }))
 
+  console.log("Rendering column:", status);
+  console.log(
+  tasks.map((t) => ({ id: t.id, status: t.status }))
+);
+
+
   return (
+    
     <div>
       {tasks
         .filter((task) => task.status === status)
@@ -36,6 +43,7 @@ const BoardColumn = ({
             task={task}
           />
         ))}
+        
     </div>
       
   );
