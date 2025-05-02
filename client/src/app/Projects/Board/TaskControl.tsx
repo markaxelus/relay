@@ -57,7 +57,7 @@ const TaskControl = ({ task }: TaskProps) => {
                 ${isDragging ? "opacity-50" : "opacity-100"}`}
     >
 
-       <div className="p-4 md:p-6">
+      <div className=" p-4 md:p-6">
         <div className="flex items-start justify-between">
           <div className="flex flex-1 flex-wrap items-center gap-2">
             {task.priority && 
@@ -76,12 +76,37 @@ const TaskControl = ({ task }: TaskProps) => {
           <button className="flex h-6 w-6 flex-shrink-0 items-center justify-center dark:text-neutral-500">
             <EllipsisVertical size={26} />
           </button>
-          
         </div>
-       </div>
-   
+
+        <div className="my-3 flex justify-between">
+          {/* Task Title */}
+          <h4 className="text-md font-bold dark:text-white">
+            {task.title}
+          </h4>
+          {/* Task Points */}
+          {typeof task.points === "number" && (
+            <div className="text-xs font-semibold dark:text-white">
+              {task.points} pts
+            </div>
+          )}
+          {/* Task Date */}
+          <div className="text-xs text-gray-500 dark:text-neutral-500">
+            {formatStartDate && <span>{formatStartDate} - </span>}
+            {formatDueDate && <span>{formatDueDate}</span>}
+          </div>
+        </div>
+
+        {/* Task Description */}
+        <div>
+          <p className="text-sm text-gray-600 dark:text-neutral-500">
+            {task.description}
+          </p>
+        </div>
+        
+        {/* Users */}
+      </div>
+
     </div>
-      
   )
 }
 
